@@ -1,5 +1,7 @@
 ## Payot
 
+![Node.js CI](https://github.com/dresende/payot/workflows/Node.js%20CI/badge.svg)
+
 ```js
 const payot = require("payot");
 
