@@ -1,5 +1,12 @@
 {
-	"name"         : "payot",
-	"version"      : "0.0.0",
-	"dependencies" : {}
+	"name": "payot",
+	"version": "0.0.0",
+	"scripts": {
+		"test": "node test/spec"
+	},
+	"devDependencies": {
+		"mocha": "^7.1.2",
+		"should": "^13.2.3",
+		"glob": "^7.1.6"
+	}
 }
