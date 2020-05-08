@@ -1,11 +1,18 @@
 class Parser {
 	#options = {
 		default_period : 3600, // 1 hour
+		aliases        : [],
 	}
 
 	constructor(options = {}) {
 		for (let k in options) {
 			this.#options[k] = options[k];
+		}
+	}
+
+	alias(text) {
+		if (!this.#options.aliases.includes(text)) {
+			this.#options.aliases.push(text);
 		}
 	}
 
@@ -31,6 +38,10 @@ class Parser {
 	}
 
 	parseTime(text) {
+		if (this.#options.aliases.includes(text)) {
+			return text;
+		}
+
 		let parts = text.split(":").map((part) => (+(part.trim())));
 
 		return ((parts[0] || 0) * 3600) + ((parts[1] || 0) * 60) + (parts[2] || 0);
@@ -38,7 +49,10 @@ class Parser {
 }
 
 const default_parser = new Parser();
-
-module.exports = (text) => {
+const exported       = function (text) {
 	return default_parser.parse(text);
 }
+
+exported.parser = default_parser;
+
+module.exports = exported;

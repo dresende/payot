@@ -37,3 +37,11 @@ describe("an interval list", () => {
 		should.deepEqual(payot(";;10-12,;,,16-18,,"), [{ from: 10 * 3600, to: 12 * 3600 }, { from: 16 * 3600, to: 18 * 3600 }]);
 	});
 });
+
+describe("an interval part", () => {
+	it("can have aliases which are text strings allowed as-is", () => {
+		payot.parser.alias("sunset");
+
+		should.deepEqual(payot("10:00-sunset"), [{ from: 10 * 3600, to: "sunset" }]);
+	});
+});
